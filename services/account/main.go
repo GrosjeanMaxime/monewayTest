@@ -1,10 +1,10 @@
 package main
 
 import (
+	"github.com/monewayTest/proto/account/pb"
+	"github.com/monewayTest/services/account/db"
 	"google.golang.org/grpc"
 	"log"
-	"monewayTest/proto/account/pb"
-	"monewayTest/services/account/db"
 	"net"
 )
 
@@ -21,6 +21,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to connect database: %v", err)
 	}
+
+	defer aDatabase.Session.Close()
+
 	accountDatabase = *aDatabase
 	g := grpc.NewServer()
 	pb.RegisterAccountServer(g, newServer())

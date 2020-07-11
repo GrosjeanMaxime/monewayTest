@@ -1,11 +1,11 @@
 package main
 
 import (
+	"context"
 	"github.com/gocql/gocql"
-	"golang.org/x/net/context"
+	"github.com/monewayTest/proto/account/pb"
+	"github.com/monewayTest/services/account/db"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"monewayTest/proto/account/pb"
-	"monewayTest/services/account/db"
 	"time"
 )
 
@@ -19,7 +19,7 @@ func (s *server) CreateAccount(ctx context.Context, account *pb.CreateRequestAcc
 	accountId, _ := gocql.RandomUUID()
 
 	newAccount := db.Account{
-		Id:   accountId.String(),
+		Id:   accountId,
 		Name:        account.Name,
 		Beneficiary: account.Beneficiary,
 		Iban:        "00000000000",
@@ -30,8 +30,12 @@ func (s *server) CreateAccount(ctx context.Context, account *pb.CreateRequestAcc
 	}
 	err := accountDatabase.InsertAccount(&newAccount)
 
+	if err != nil {
+		return &pb.ResponseAccount{}, err
+	}
+
 	return  &pb.ResponseAccount{
-		Id:			 newAccount.Id,
+		Id:			 newAccount.Id.String(),
 		Name:        newAccount.Name,
 		Beneficiary: newAccount.Beneficiary,
 		Iban:        newAccount.Iban,
@@ -39,5 +43,5 @@ func (s *server) CreateAccount(ctx context.Context, account *pb.CreateRequestAcc
 		CreateAt:  	 timestamppb.New(newAccount.CreateAt),
 		UpdatedAt:   timestamppb.New(newAccount.CreateAt),
 		Balance:     newAccount.Balance,
-	}, err
+	}, nil
 }

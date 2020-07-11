@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "/pb";
+
+message UpdateRequestBalance {
+  string accountId = 1;
+  double amount = 2;
+}
+
+message GetRequestBalance {
+  string accountId = 1;
+}
+
+message ResponseBalance {
+  double amount = 1;
+}
+
+service Balance {
+  rpc UpdateBalance(UpdateRequestBalance) returns (ResponseBalance) {};
+  rpc GetBalance(GetRequestBalance) returns (ResponseBalance) {}
+}

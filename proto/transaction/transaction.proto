@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "/pb";
+
+import "google/protobuf/timestamp.proto";
+
+message CreateRequestTransaction {
+  string accountId = 1;
+  string description = 2;
+  double amount = 3;
+  string currency = 4;
+  string notes = 5;
+}
+
+message ResponseTransaction {
+  string id = 1;
+  string accountId = 2;
+  string description = 3;
+  double amount = 4;
+  string currency = 5;
+  string notes = 6;
+  google.protobuf.Timestamp createAt = 7;
+  google.protobuf.Timestamp updatedAt = 8;
+}
+
+service Transaction {
+  rpc CreateTransaction(CreateRequestTransaction) returns (ResponseTransaction) {}
+}

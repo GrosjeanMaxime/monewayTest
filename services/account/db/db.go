@@ -8,7 +8,7 @@ import (
 )
 
 type Account struct {
-	Id          string
+	Id          gocql.UUID
 	Name        string
 	Beneficiary string
 	Iban        string
@@ -19,11 +19,11 @@ type Account struct {
 }
 
 type AccountDataBase struct {
-	session gocqlx.Session
+	Session gocqlx.Session
 }
 
 func (a AccountDataBase) InsertAccount(account *Account) error {
-	session := a.session
+	session := a.Session
 
 	stmt, names := qb.Insert("moneway.accounts").
 		Columns("id", "name", "beneficiary", "iban", "bic", "create_at", "updated_at", "balance").ToCql()
@@ -54,5 +54,5 @@ func NewDataBase() (*AccountDataBase, error) {
 		return &AccountDataBase{}, err
 	}
 
-	return &AccountDataBase{session: session }, nil
+	return &AccountDataBase{Session: session }, nil
 }
