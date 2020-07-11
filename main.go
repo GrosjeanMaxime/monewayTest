@@ -22,7 +22,7 @@ func createAccount(name string, beneficiary string) {
 		Name:        name,
 		Beneficiary: beneficiary,
 	})
-	
+
 	if err != nil {
 		log.Fatalf("%v, %v", client, err)
 	}
