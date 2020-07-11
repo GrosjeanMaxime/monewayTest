@@ -4,12 +4,12 @@ option go_package = "/pb";
 
 import "google/protobuf/timestamp.proto";
 
-message BasicAccount {
+message CreateRequestAccount {
   string name = 1;
   string beneficiary = 2;
 }
 
-message CompleteAccount {
+message ResponseAccount {
   string id = 1;
   string name = 2;
   string beneficiary = 3;
@@ -21,5 +21,5 @@ message CompleteAccount {
 }
 
 service Account {
-  rpc CreateAccount(BasicAccount) returns (CompleteAccount) {}
+  rpc CreateAccount(CreateRequestAccount) returns (ResponseAccount) {}
 }

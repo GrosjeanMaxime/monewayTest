@@ -15,7 +15,7 @@ func newServer() *server {
 	return &server{}
 }
 
-func (s *server) CreateAccount(ctx context.Context, account *pb.BasicAccount) (*pb.CompleteAccount, error) {
+func (s *server) CreateAccount(ctx context.Context, account *pb.CreateRequestAccount) (*pb.ResponseAccount, error) {
 	accountId, _ := gocql.RandomUUID()
 
 	newAccount := db.Account{
@@ -30,7 +30,7 @@ func (s *server) CreateAccount(ctx context.Context, account *pb.BasicAccount) (*
 	}
 	err := accountDatabase.InsertAccount(&newAccount)
 
-	return  &pb.CompleteAccount{
+	return  &pb.ResponseAccount{
 		Id:			 newAccount.Id,
 		Name:        newAccount.Name,
 		Beneficiary: newAccount.Beneficiary,

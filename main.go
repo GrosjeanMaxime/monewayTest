@@ -18,7 +18,7 @@ func createAccount(name string, beneficiary string) {
 
 	client := pbAccount.NewAccountClient(conAccount)
 
-	message, err := client.CreateAccount(context.Background(), &pbAccount.BasicAccount{
+	message, err := client.CreateAccount(context.Background(), &pbAccount.CreateRequestAccount{
 		Name:        name,
 		Beneficiary: beneficiary,
 	})
