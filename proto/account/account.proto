@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "/pb";
+
+import "google/protobuf/timestamp.proto";
+
+message BasicAccount {
+  string name = 1;
+  string beneficiary = 2;
+}
+
+message CompleteAccount {
+  string id = 1;
+  string name = 2;
+  string beneficiary = 3;
+  string iban = 4;
+  string bic = 5;
+  google.protobuf.Timestamp createAt = 6;
+  google.protobuf.Timestamp updatedAt = 7;
+  double balance = 8;
+}
+
+service Account {
+  rpc CreateAccount(BasicAccount) returns (CompleteAccount) {}
+}
