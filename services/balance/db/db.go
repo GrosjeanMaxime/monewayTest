@@ -23,7 +23,10 @@ type AccountDataBase struct {
 }
 
 func (a *AccountDataBase) GetBalance(accountId string) (float64, error) {
-	q := a.Session.Query(qb.Select("moneway.accounts").Where(qb.Eq("id")).ToCql())
+	session := a.Session
+
+	// Set query to get balance according to the id
+	q := session.Query(qb.Select("moneway.accounts").Where(qb.Eq("id")).ToCql())
 	accountTmp := Account{}
 
 	uuid, _ := gocql.ParseUUID(accountId)
@@ -31,6 +34,7 @@ func (a *AccountDataBase) GetBalance(accountId string) (float64, error) {
 		Id: uuid,
 	})
 
+	// Execute the query
 	if err := q.GetRelease(&accountTmp); err != nil {
 		return 0, err
 	}
@@ -40,8 +44,9 @@ func (a *AccountDataBase) GetBalance(accountId string) (float64, error) {
 func (a *AccountDataBase) UpdateBalance(accountId string, amount float64) error {
 	session := a.Session
 
+	// Set query to update balance according to the id
 	q:= session.Query(qb.Update("moneway.accounts").
-		Set("balance", "update_at").
+		Set("balance", "updated_at").
 		Where(qb.Eq("id")).Existing().
 		ToCql())
 
@@ -52,6 +57,7 @@ func (a *AccountDataBase) UpdateBalance(accountId string, amount float64) error 
 		UpdatedAt: time.Now(),
 	})
 
+	// Execute the query
 	if err := q.ExecRelease(); err != nil {
 		return err
 	}

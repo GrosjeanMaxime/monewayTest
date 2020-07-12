@@ -9,6 +9,7 @@ import (
 type server struct{}
 
 func (s *server) UpdateBalance(ctx context.Context, balanceRequest *pb.UpdateRequestBalance) (*pb.ResponseBalance, error) {
+	// Get the balance in the account database
 	balance, err := accountDatabase.GetBalance(balanceRequest.AccountId)
 
 	if err != nil {
@@ -20,6 +21,7 @@ func (s *server) UpdateBalance(ctx context.Context, balanceRequest *pb.UpdateReq
 		return &pb.ResponseBalance{}, errors.New("Not enough money in the account")
 	}
 
+	// Update the balance in the account database
 	err = accountDatabase.UpdateBalance(balanceRequest.AccountId, newBalance)
 
 	if err != nil {
@@ -30,6 +32,7 @@ func (s *server) UpdateBalance(ctx context.Context, balanceRequest *pb.UpdateReq
 }
 
 func (s *server) GetBalance(ctx context.Context, account *pb.GetRequestBalance) (*pb.ResponseBalance, error) {
+	// Get the balance in the account database
 	balance, err := accountDatabase.GetBalance(account.AccountId)
 	
 	if err != nil {

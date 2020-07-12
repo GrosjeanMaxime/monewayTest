@@ -11,17 +11,23 @@ import (
 var accountDatabase db.AccountDataBase
 
 func main() {
+	// Init the balance server
 	lis, err := net.Listen("tcp", "localhost:4002")
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
 	}
 
+	// Close the balance server at the end
+	defer lis.Close()
+
+	// Init the database
 	aDatabase, err := db.NewDataBase()
 
 	if err != nil {
 		log.Fatalf("Failed to connect database: %v", err)
 	}
 
+	// Close the database at the end
 	defer aDatabase.Session.Close()
 
 	accountDatabase = *aDatabase

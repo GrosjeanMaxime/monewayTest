@@ -25,11 +25,13 @@ type AccountDataBase struct {
 func (a AccountDataBase) InsertAccount(account *Account) error {
 	session := a.Session
 
+	// Set query to insert a new account
 	q :=  session.Query(qb.Insert("moneway.accounts").
 		Columns("id", "name", "beneficiary", "iban", "bic", "create_at", "updated_at", "balance").ToCql())
 
 	q.BindStruct(account)
 
+	// Execute the query
 	if err := q.ExecRelease(); err != nil {
 		return err
 	}

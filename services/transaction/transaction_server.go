@@ -13,6 +13,7 @@ import (
 type Server struct{}
 
 func (s *Server) UpdateTransaction(ctx context.Context, transaction *pbTransaction.UpdateRequestTransaction) (*pbTransaction.ResponseTransaction, error) {
+	// Parse the uuid for the transaction id
 	uuid, _ := gocql.ParseUUID(transaction.Id)
 
 	updateTransaction := db.Transaction{
@@ -23,6 +24,7 @@ func (s *Server) UpdateTransaction(ctx context.Context, transaction *pbTransacti
 		UpdatedAt:   time.Now(),
 	}
 
+	// Update the transaction in the database
 	err := transactionDatabase.UpdateTransaction(&updateTransaction)
 
 	if err != nil {
@@ -40,8 +42,10 @@ func (s *Server) UpdateTransaction(ctx context.Context, transaction *pbTransacti
 }
 
 func (s *Server) CreateTransaction(ctx context.Context, transaction *pbTransaction.CreateRequestTransaction) (*pbTransaction.ResponseTransaction, error) {
+	// Get random uuid for the transaction id
 	transactionId, _ := gocql.RandomUUID()
-	accountId, _ := gocql.RandomUUID()
+	// Get parsed uuid for the account id
+	accountId, _ := gocql.ParseUUID(transaction.AccountId)
 
 	newTransaction := db.Transaction{
 		Id:          transactionId,
@@ -54,12 +58,14 @@ func (s *Server) CreateTransaction(ctx context.Context, transaction *pbTransacti
 		UpdatedAt:   time.Now(),
 	}
 
+	// Update the balance in the account database
 	_, err := balanceClient.UpdateBalance(context.Background(), &pbBalance.UpdateRequestBalance{AccountId: transaction.GetAccountId(), Amount: transaction.Amount})
 
 	if err != nil {
 		return &pbTransaction.ResponseTransaction{}, err
 	}
 
+	// Insert the transaction in the database
 	err = transactionDatabase.InsertTransaction(&newTransaction)
 
 	return  &pbTransaction.ResponseTransaction{

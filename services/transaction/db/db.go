@@ -25,6 +25,7 @@ type TransactionDataBase struct {
 func (a *TransactionDataBase) UpdateTransaction(transaction *Transaction) error {
 	session := a.Session
 
+	// Set query to update transaction according to the id
 	q:= session.Query(qb.Update("moneway.transactions").
 		Set("description", "currency", "notes", "updated_at").
 		Where(qb.Eq("id")).Existing().
@@ -32,6 +33,7 @@ func (a *TransactionDataBase) UpdateTransaction(transaction *Transaction) error 
 
 	q.BindStruct(transaction)
 
+	// Execute the query
 	if err := q.ExecRelease(); err != nil {
 		return err
 	}
@@ -41,11 +43,13 @@ func (a *TransactionDataBase) UpdateTransaction(transaction *Transaction) error 
 func (a *TransactionDataBase) InsertTransaction(transaction *Transaction) error {
 	session := a.Session
 
+	// Set query to insert a new transaction
 	q :=session.Query(qb.Insert("moneway.transactions").
 		Columns("id", "account_id", "description", "amount", "currency", "notes", "create_at", "updated_at").ToCql())
 
 	q.BindStruct(transaction)
 
+	// Execute the query
 	if err := q.ExecRelease(); err != nil {
 		return err
 	}

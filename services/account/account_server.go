@@ -16,6 +16,7 @@ func newServer() *server {
 }
 
 func (s *server) CreateAccount(ctx context.Context, account *pb.CreateRequestAccount) (*pb.ResponseAccount, error) {
+	// Get random uuid for the account id
 	accountId, _ := gocql.RandomUUID()
 
 	newAccount := db.Account{
@@ -28,6 +29,8 @@ func (s *server) CreateAccount(ctx context.Context, account *pb.CreateRequestAcc
 		UpdatedAt:   time.Now(),
 		Balance:     0,
 	}
+
+	// Insert the account in the database
 	err := accountDatabase.InsertAccount(&newAccount)
 
 	if err != nil {
