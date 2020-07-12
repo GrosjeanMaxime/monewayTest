@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/monewayTest/proto/balance/pb"
+	"github.com/GrosjeanMaxime/monewayTest/proto/balance/pb"
 	"google.golang.org/grpc"
 	"log"
 )

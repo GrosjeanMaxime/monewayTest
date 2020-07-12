@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/monewayTest/proto/balance/pb"
-	"github.com/monewayTest/services/balance/db"
+	"github.com/GrosjeanMaxime/monewayTest/proto/balance/pb"
+	"github.com/GrosjeanMaxime/monewayTest/services/balance/db"
 	"google.golang.org/grpc"
 	"log"
 	"net"

@@ -1,9 +1,9 @@
 package main
 
 import (
-	pbBalance "github.com/monewayTest/proto/balance/pb"
-	pbTransaction "github.com/monewayTest/proto/transaction/pb"
-	db "github.com/monewayTest/services/transaction/db"
+	pbBalance "github.com/GrosjeanMaxime/monewayTest/proto/balance/pb"
+	pbTransaction "github.com/GrosjeanMaxime/monewayTest/proto/transaction/pb"
+	db "github.com/GrosjeanMaxime/monewayTest/services/transaction/db"
 	"google.golang.org/grpc"
 	"log"
 	"net"

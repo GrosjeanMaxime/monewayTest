@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	pbBalance "github.com/GrosjeanMaxime/monewayTest/proto/balance/pb"
+	pbTransaction "github.com/GrosjeanMaxime/monewayTest/proto/transaction/pb"
+	"github.com/GrosjeanMaxime/monewayTest/services/transaction/db"
 	"github.com/gocql/gocql"
-	pbBalance "github.com/monewayTest/proto/balance/pb"
-	pbTransaction "github.com/monewayTest/proto/transaction/pb"
-	"github.com/monewayTest/services/transaction/db"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"time"
 )

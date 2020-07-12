@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	pbAccount "github.com/monewayTest/proto/account/pb"
-	pbBalance "github.com/monewayTest/proto/balance/pb"
-	pbTransaction "github.com/monewayTest/proto/transaction/pb"
+	pbAccount "github.com/GrosjeanMaxime/monewayTest/proto/account/pb"
+	pbBalance "github.com/GrosjeanMaxime/monewayTest/proto/balance/pb"
+	pbTransaction "github.com/GrosjeanMaxime/monewayTest/proto/transaction/pb"
 	"google.golang.org/grpc"
 	"log"
 	"os"

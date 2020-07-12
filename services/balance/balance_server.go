@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"errors"
-	"github.com/monewayTest/proto/balance/pb"
+	"github.com/GrosjeanMaxime/monewayTest/proto/balance/pb"
 )
 
 type server struct{}
