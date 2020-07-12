@@ -11,8 +11,8 @@ CREATE_ACCOUNT_TABLE="CREATE TABLE IF NOT EXISTS moneway.accounts (
 		updated_at timestamp,
 		balance double )"
 CREATE_TRANSACTION_TABLE="CREATE TABLE IF NOT EXISTS moneway.transactions (
-		id text PRIMARY KEY,
-		account_id text,
+		id uuid PRIMARY KEY,
+		account_id uuid,
 		description text,
 		amount double,
 		currency text,

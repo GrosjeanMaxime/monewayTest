@@ -12,16 +12,40 @@ import (
 
 type Server struct{}
 
-func newServer() *Server {
-	return &Server{}
+func (s *Server) UpdateTransaction(ctx context.Context, transaction *pbTransaction.UpdateRequestTransaction) (*pbTransaction.ResponseTransaction, error) {
+	uuid, _ := gocql.ParseUUID(transaction.Id)
+
+	updateTransaction := db.Transaction{
+		Id:          uuid,
+		Description: transaction.GetDescription(),
+		Currency:    transaction.GetCurrency(),
+		Notes:       transaction.GetNotes(),
+		UpdatedAt:   time.Now(),
+	}
+
+	err := transactionDatabase.UpdateTransaction(&updateTransaction)
+
+	if err != nil {
+		return &pbTransaction.ResponseTransaction{}, err
+	}
+
+	return  &pbTransaction.ResponseTransaction{
+		Id:          updateTransaction.Id.String(),
+		Description: updateTransaction.Description,
+		Amount:      updateTransaction.Amount,
+		Currency:    updateTransaction.Currency,
+		Notes:       updateTransaction.Notes,
+		UpdatedAt:   timestamppb.New(updateTransaction.UpdatedAt),
+	}, nil
 }
 
 func (s *Server) CreateTransaction(ctx context.Context, transaction *pbTransaction.CreateRequestTransaction) (*pbTransaction.ResponseTransaction, error) {
 	transactionId, _ := gocql.RandomUUID()
+	accountId, _ := gocql.RandomUUID()
 
 	newTransaction := db.Transaction{
-		Id:          transactionId.String(),
-		AccountId:   transaction.GetAccountId(),
+		Id:          transactionId,
+		AccountId:   accountId,
 		Description: transaction.GetDescription(),
 		Amount:      transaction.GetAmount(),
 		Currency:    transaction.GetCurrency(),
@@ -39,8 +63,8 @@ func (s *Server) CreateTransaction(ctx context.Context, transaction *pbTransacti
 	err = transactionDatabase.InsertTransaction(&newTransaction)
 
 	return  &pbTransaction.ResponseTransaction{
-		Id:          newTransaction.Id,
-		AccountId:   newTransaction.AccountId,
+		Id:          newTransaction.Id.String(),
+		AccountId:   newTransaction.AccountId.String(),
 		Description: newTransaction.Description,
 		Amount:      newTransaction.Amount,
 		Currency:    newTransaction.Currency,
@@ -50,3 +74,6 @@ func (s *Server) CreateTransaction(ctx context.Context, transaction *pbTransacti
 	}, nil
 }
 
+func newServer() *Server {
+	return &Server{}
+}

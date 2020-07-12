@@ -40,7 +40,7 @@
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
-  packages = ["context","http/httpguts","http2","http2/hpack","idna","internal/timeseries","trace"]
+  packages = ["http/httpguts","http2","http2/hpack","idna","internal/timeseries","trace"]
   revision = "ab34263943818b32f575efc978a3d24e80b04bd7"
 
 [[projects]]
@@ -82,6 +82,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "c852d6e458400b94b583183396cdc69f8c1ff5dba95dec550bf5a50b4713c4b7"
+  inputs-digest = "51c33f4a5e6be19e0fb6f316d620fc9f0f01643925dbd8a11784524ae865a4c3"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -8,8 +8,8 @@ import (
 )
 
 type Transaction struct {
-	Id          string
-	AccountId   string
+	Id          gocql.UUID
+	AccountId   gocql.UUID
 	Description string
 	Amount      float64
 	Currency    string
@@ -22,17 +22,34 @@ type TransactionDataBase struct {
 	Session gocqlx.Session
 }
 
-func (a TransactionDataBase) InsertTransaction(account *Transaction) error {
+func (a *TransactionDataBase) UpdateTransaction(transaction *Transaction) error {
 	session := a.Session
 
-	stmt, names := qb.Insert("moneway.transactions").
-		Columns("id", "account_id", "description", "amount", "currency", "notes", "create_at", "updated_at").ToCql()
-	insertTransaction := session.Query(stmt, names)
+	q:= session.Query(qb.Update("moneway.transactions").
+		Set("description", "currency", "notes", "updated_at").
+		Where(qb.Eq("id")).Existing().
+		ToCql())
 
-	insertTransaction.BindStruct(account)
-	if err := insertTransaction.ExecRelease(); err != nil {
+	q.BindStruct(transaction)
+
+	if err := q.ExecRelease(); err != nil {
 		return err
 	}
+	return nil
+}
+
+func (a *TransactionDataBase) InsertTransaction(transaction *Transaction) error {
+	session := a.Session
+
+	q :=session.Query(qb.Insert("moneway.transactions").
+		Columns("id", "account_id", "description", "amount", "currency", "notes", "create_at", "updated_at").ToCql())
+
+	q.BindStruct(transaction)
+
+	if err := q.ExecRelease(); err != nil {
+		return err
+	}
+
 	return nil
 }
 

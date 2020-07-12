@@ -38,20 +38,21 @@ func (a *AccountDataBase) GetBalance(accountId string) (float64, error) {
 }
 
 func (a *AccountDataBase) UpdateBalance(accountId string, amount float64) error {
-	q:= a.Session.Query(qb.Update("moneway.accounts").
-		Set("balance", "create_at").
-		Where(qb.Eq("id")).
+	session := a.Session
+
+	q:= session.Query(qb.Update("moneway.accounts").
+		Set("balance", "update_at").
+		Where(qb.Eq("id")).Existing().
 		ToCql())
 
 	uuid, _ := gocql.ParseUUID(accountId)
 	q.BindStruct(&Account{
 		Id: uuid,
 		Balance: amount,
-		CreateAt: time.Now(),
+		UpdatedAt: time.Now(),
 	})
 
-	err := q.ExecRelease()
-	if err != nil {
+	if err := q.ExecRelease(); err != nil {
 		return err
 	}
 	return nil

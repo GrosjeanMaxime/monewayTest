@@ -12,6 +12,13 @@ message CreateRequestTransaction {
   string notes = 5;
 }
 
+message UpdateRequestTransaction {
+  string id = 1;
+  string description = 3;
+  string currency = 5;
+  string notes = 6;
+}
+
 message ResponseTransaction {
   string id = 1;
   string accountId = 2;
@@ -24,5 +31,6 @@ message ResponseTransaction {
 }
 
 service Transaction {
-  rpc CreateTransaction(CreateRequestTransaction) returns (ResponseTransaction) {}
+  rpc CreateTransaction(CreateRequestTransaction) returns (ResponseTransaction) {};
+  rpc UpdateTransaction(UpdateRequestTransaction) returns (ResponseTransaction) {}
 }

@@ -109,6 +109,77 @@ func (x *CreateRequestTransaction) GetNotes() string {
 	return ""
 }
 
+type UpdateRequestTransaction struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id          string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Currency    string `protobuf:"bytes,5,opt,name=currency,proto3" json:"currency,omitempty"`
+	Notes       string `protobuf:"bytes,6,opt,name=notes,proto3" json:"notes,omitempty"`
+}
+
+func (x *UpdateRequestTransaction) Reset() {
+	*x = UpdateRequestTransaction{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_transaction_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateRequestTransaction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateRequestTransaction) ProtoMessage() {}
+
+func (x *UpdateRequestTransaction) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateRequestTransaction.ProtoReflect.Descriptor instead.
+func (*UpdateRequestTransaction) Descriptor() ([]byte, []int) {
+	return file_transaction_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *UpdateRequestTransaction) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateRequestTransaction) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *UpdateRequestTransaction) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *UpdateRequestTransaction) GetNotes() string {
+	if x != nil {
+		return x.Notes
+	}
+	return ""
+}
+
 type ResponseTransaction struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -127,7 +198,7 @@ type ResponseTransaction struct {
 func (x *ResponseTransaction) Reset() {
 	*x = ResponseTransaction{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_transaction_proto_msgTypes[1]
+		mi := &file_transaction_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -140,7 +211,7 @@ func (x *ResponseTransaction) String() string {
 func (*ResponseTransaction) ProtoMessage() {}
 
 func (x *ResponseTransaction) ProtoReflect() protoreflect.Message {
-	mi := &file_transaction_proto_msgTypes[1]
+	mi := &file_transaction_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -153,7 +224,7 @@ func (x *ResponseTransaction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResponseTransaction.ProtoReflect.Descriptor instead.
 func (*ResponseTransaction) Descriptor() ([]byte, []int) {
-	return file_transaction_proto_rawDescGZIP(), []int{1}
+	return file_transaction_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ResponseTransaction) GetId() string {
@@ -228,6 +299,14 @@ var file_transaction_proto_rawDesc = []byte{
 	0x01, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x75, 0x72,
 	0x72, 0x65, 0x6e, 0x63, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x75, 0x72,
 	0x72, 0x65, 0x6e, 0x63, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x6e, 0x6f, 0x74, 0x65, 0x73, 0x18, 0x05,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6e, 0x6f, 0x74, 0x65, 0x73, 0x22, 0x7e, 0x0a, 0x18, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x54, 0x72, 0x61, 0x6e,
+	0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72,
+	0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65,
+	0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x75, 0x72,
+	0x72, 0x65, 0x6e, 0x63, 0x79, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x75, 0x72,
+	0x72, 0x65, 0x6e, 0x63, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x6e, 0x6f, 0x74, 0x65, 0x73, 0x18, 0x06,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6e, 0x6f, 0x74, 0x65, 0x73, 0x22, 0xa1, 0x02, 0x0a, 0x13,
 	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74,
 	0x69, 0x6f, 0x6e, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
@@ -247,13 +326,17 @@ var file_transaction_proto_rawDesc = []byte{
 	0x41, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
 	0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x32,
-	0x55, 0x0a, 0x0b, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x46,
-	0x0a, 0x11, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74,
-	0x69, 0x6f, 0x6e, 0x12, 0x19, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x14,
-	0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63,
-	0x74, 0x69, 0x6f, 0x6e, 0x22, 0x00, 0x42, 0x05, 0x5a, 0x03, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x9d, 0x01, 0x0a, 0x0b, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12,
+	0x46, 0x0a, 0x11, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x19, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x1a,
+	0x14, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x00, 0x12, 0x46, 0x0a, 0x11, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x19, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x54, 0x72, 0x61, 0x6e,
+	0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x14, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x00, 0x42,
+	0x05, 0x5a, 0x03, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -268,19 +351,22 @@ func file_transaction_proto_rawDescGZIP() []byte {
 	return file_transaction_proto_rawDescData
 }
 
-var file_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_transaction_proto_goTypes = []interface{}{
 	(*CreateRequestTransaction)(nil), // 0: CreateRequestTransaction
-	(*ResponseTransaction)(nil),      // 1: ResponseTransaction
-	(*timestamp.Timestamp)(nil),      // 2: google.protobuf.Timestamp
+	(*UpdateRequestTransaction)(nil), // 1: UpdateRequestTransaction
+	(*ResponseTransaction)(nil),      // 2: ResponseTransaction
+	(*timestamp.Timestamp)(nil),      // 3: google.protobuf.Timestamp
 }
 var file_transaction_proto_depIdxs = []int32{
-	2, // 0: ResponseTransaction.createAt:type_name -> google.protobuf.Timestamp
-	2, // 1: ResponseTransaction.updatedAt:type_name -> google.protobuf.Timestamp
+	3, // 0: ResponseTransaction.createAt:type_name -> google.protobuf.Timestamp
+	3, // 1: ResponseTransaction.updatedAt:type_name -> google.protobuf.Timestamp
 	0, // 2: Transaction.CreateTransaction:input_type -> CreateRequestTransaction
-	1, // 3: Transaction.CreateTransaction:output_type -> ResponseTransaction
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
+	1, // 3: Transaction.UpdateTransaction:input_type -> UpdateRequestTransaction
+	2, // 4: Transaction.CreateTransaction:output_type -> ResponseTransaction
+	2, // 5: Transaction.UpdateTransaction:output_type -> ResponseTransaction
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -305,6 +391,18 @@ func file_transaction_proto_init() {
 			}
 		}
 		file_transaction_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateRequestTransaction); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_transaction_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResponseTransaction); i {
 			case 0:
 				return &v.state
@@ -323,7 +421,7 @@ func file_transaction_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_transaction_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -350,6 +448,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type TransactionClient interface {
 	CreateTransaction(ctx context.Context, in *CreateRequestTransaction, opts ...grpc.CallOption) (*ResponseTransaction, error)
+	UpdateTransaction(ctx context.Context, in *UpdateRequestTransaction, opts ...grpc.CallOption) (*ResponseTransaction, error)
 }
 
 type transactionClient struct {
@@ -369,9 +468,19 @@ func (c *transactionClient) CreateTransaction(ctx context.Context, in *CreateReq
 	return out, nil
 }
 
+func (c *transactionClient) UpdateTransaction(ctx context.Context, in *UpdateRequestTransaction, opts ...grpc.CallOption) (*ResponseTransaction, error) {
+	out := new(ResponseTransaction)
+	err := c.cc.Invoke(ctx, "/Transaction/UpdateTransaction", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransactionServer is the server API for Transaction service.
 type TransactionServer interface {
 	CreateTransaction(context.Context, *CreateRequestTransaction) (*ResponseTransaction, error)
+	UpdateTransaction(context.Context, *UpdateRequestTransaction) (*ResponseTransaction, error)
 }
 
 // UnimplementedTransactionServer can be embedded to have forward compatible implementations.
@@ -380,6 +489,9 @@ type UnimplementedTransactionServer struct {
 
 func (*UnimplementedTransactionServer) CreateTransaction(context.Context, *CreateRequestTransaction) (*ResponseTransaction, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTransaction not implemented")
+}
+func (*UnimplementedTransactionServer) UpdateTransaction(context.Context, *UpdateRequestTransaction) (*ResponseTransaction, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTransaction not implemented")
 }
 
 func RegisterTransactionServer(s *grpc.Server, srv TransactionServer) {
@@ -404,6 +516,24 @@ func _Transaction_CreateTransaction_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Transaction_UpdateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRequestTransaction)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServer).UpdateTransaction(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Transaction/UpdateTransaction",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServer).UpdateTransaction(ctx, req.(*UpdateRequestTransaction))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Transaction_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Transaction",
 	HandlerType: (*TransactionServer)(nil),
@@ -411,6 +541,10 @@ var _Transaction_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateTransaction",
 			Handler:    _Transaction_CreateTransaction_Handler,
+		},
+		{
+			MethodName: "UpdateTransaction",
+			Handler:    _Transaction_UpdateTransaction_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

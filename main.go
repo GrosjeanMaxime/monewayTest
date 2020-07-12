@@ -55,6 +55,29 @@ func createTransaction(accountId string, description string, amount float64, cur
 	log.Println(message)
 }
 
+func updateTransaction(id string, description string, currency string, notes string) {
+	conAccount, err := grpc.Dial("localhost:4001", grpc.WithInsecure())
+	if err != nil {
+		log.Fatalf("Failed to start gRPC connection: %v", err)
+	}
+	defer conAccount.Close()
+
+	client := pbTransaction.NewTransactionClient(conAccount)
+
+	message, err := client.UpdateTransaction(context.Background(), &pbTransaction.UpdateRequestTransaction{
+		Id:   id,
+		Description: description,
+		Currency:    currency,
+		Notes:       notes,
+	})
+
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	log.Println(message)
+}
+
 func createAccount(name string, beneficiary string) {
 	conAccount, err := grpc.Dial("localhost:4000", grpc.WithInsecure())
 	if err != nil {
@@ -87,6 +110,8 @@ func main() {
 	case query[0] == "CREATE_TRANSACTION" && len(query) == 6:
 		amount, _ := strconv.ParseFloat(query[3], 64)
 		createTransaction(query[1], query[2], amount, query[4], query[5])
+	case query[0] == "UPDATE_TRANSACTION" && len(query) == 5:
+		updateTransaction(query[1], query[2], query[3], query[4])
 	case query[0] == "GET_BALANCE" && len(query) == 2:
 		getBalance(query[1])
 	default:
