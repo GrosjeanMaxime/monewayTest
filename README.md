@@ -17,18 +17,18 @@ Required : Dep, Go, Docker
 Run the following command to install dependencies :
 ``` dep ensure ``` 
 
-Run the following command to install the ScyllaDb database :
+Install the ScyllaDb database :
 ``` sudo docker build -t scylladb . ``` 
 
-Run the following command to install the different services :
+Install the different services :
 ``` ./install_services.sh ```
 
-Run the following command to install the main client :
+Install the main client :
 ``` ./install_main_client.sh ```
 
 ## Usage
 
-Run the following commands :
+Run the ScyllaDb database :
 ``` sudo docker run -p 9042:9042 scylladb ```
 
 Run the following commands in this order :
