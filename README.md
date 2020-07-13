@@ -18,7 +18,7 @@ Run the following command to install dependencies :
 ``` dep ensure ``` 
 
 Run the following command to install the ScyllaDb database :
-``` sudo docker build -t scyllaDb . ``` 
+``` sudo docker build -t scylladb . ``` 
 
 Run the following command to install the different services :
 ``` ./install_services.sh ```
@@ -29,7 +29,7 @@ Run the following command to install the main client :
 ## Usage
 
 Run the following commands :
-``` sudo docker run -p 9042:9042 scyllaDb ```
+``` sudo docker run -p 9042:9042 scylladb ```
 
 Run the following commands in this order :
 ``` ./balance_service ./transaction_service ./account_service ``` 
