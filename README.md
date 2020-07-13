@@ -41,7 +41,7 @@ Create a transaction :
 ``` ./main_client CREATE_TRANSACTION [ACCOUNT_ID] [DESCRIPTION] [AMOUNT] [CURRENCY] [NOTES] ``` 
 
 Update a transaction :
-``` ./main_client CREATE_UPDATE [TRANSACTION_ID] [DESCRIPTION] [CURRENCY] [NOTES] ``` 
+``` ./main_client UPDATE_TRANSACTION [TRANSACTION_ID] [DESCRIPTION] [CURRENCY] [NOTES] ``` 
  
 Get the account balance :
 ``` ./main_client GET_BALANCE [ACCOUNT_ID] ``` 
